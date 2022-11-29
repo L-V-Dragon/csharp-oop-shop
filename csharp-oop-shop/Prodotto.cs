@@ -20,16 +20,16 @@ namespace csharp_oop_shop
 
         }
 
-        public Prodotto(int codice, string nome, string descrizione, double prezzo, double iva)
+        public Prodotto(string nome, string descrizione, double prezzo, double iva)
         {
-            this.codice = codice;
+            this.codice = this.GeneratoreCodice();
             this.nome = nome;
             this.descrizione = descrizione;
             this.prezzo = prezzo;
             this.iva = iva;
         }
 
-        private int GetCodice()
+        public int GetCodice()
         {
             return this.codice;
         }
@@ -55,40 +55,38 @@ namespace csharp_oop_shop
         }
 
 
-        private void SetCodice(int codice)
+        public void SetNome(string nome)
         {
-            if (this.codice != 0)
-            {
-                this.codice = codice;
-            }
-            else
-            {
-                Console.WriteLine("errore");
-            }
+            this.nome = nome;
         }
 
-        private void SetCodice()
+        public void SetDescrizione(string descrizione)
         {
-
+            this.descrizione = descrizione;
         }
 
+        public void SetPrezzo(double prezzo)
+        {
+            this.prezzo = prezzo;
+        }
 
+        public void SetIva(double iva)
+        {
+            this.iva = iva;
+        }
 
+        public void StampaProdotto()
+        {
+            Console.WriteLine(this.codice);
+            Console.WriteLine("Nome: " + this.nome);
+            Console.WriteLine("Descrizione: " + this.descrizione);
+            Console.WriteLine("Prezzo: " + PrezzoBase() + " euro");
+            Console.WriteLine("Iva:" + this.iva + " %");
+            Console.WriteLine("Prezzo con Iva: " + PrezzoTasse() + "");
+            Console.WriteLine("Nome completo: " + this.nome + codice);
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private int GeneratoreCodice()
+        public int GeneratoreCodice()
         {
             Random numCode = new Random();
             int codiceNuovo = numCode.Next(100000000);
@@ -96,11 +94,15 @@ namespace csharp_oop_shop
         }
 
 
-        public double Tasse()
+        public double PrezzoBase()
         {
-            double tassa = prezzo * iva / 100;
-            double prezzoTassato = prezzo + tassa;
-            return prezzoTassato;
+            return this.prezzo;
+        }
+
+        public double PrezzoTasse()
+        {
+            double tassa = this.prezzo * this.iva / 100;
+            return this.prezzo + tassa;
         }
 
     }
