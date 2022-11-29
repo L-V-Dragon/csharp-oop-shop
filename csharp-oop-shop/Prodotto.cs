@@ -83,7 +83,7 @@ namespace csharp_oop_shop
             Console.WriteLine("Prezzo: " + PrezzoBase() + " euro");
             Console.WriteLine("Iva:" + this.iva + " %");
             Console.WriteLine("Prezzo con Iva: " + PrezzoTasse() + "");
-            Console.WriteLine("Nome completo: " + this.nome + codice);
+            NomeCompleto();
         }
 
         public int GeneratoreCodice()
@@ -103,6 +103,11 @@ namespace csharp_oop_shop
         {
             double tassa = this.prezzo * this.iva / 100;
             return this.prezzo + tassa;
+        }
+
+        public void NomeCompleto()
+        {
+            Console.WriteLine("Nome completo: " + this.nome + codice);
         }
 
     }
